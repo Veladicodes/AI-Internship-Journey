@@ -1,0 +1,36 @@
+Task 6 - AI Connection Questions
+
+
+Q1. How does ChatGPT communicate with applications?
+
+ChatGPT uses an API to communicate with other applications. So when some app has a "chat with AI" feature, that app is not running ChatGPT itself. It sends the user's message to OpenAI's servers through an HTTP POST request and OpenAI sends back the reply in JSON format. The app just shows that reply to the user.
+
+So basically the flow is: user types message -> app sends it to OpenAI API -> OpenAI processes it and sends back response -> app shows the response.
+
+
+Q2. Why do AI products expose APIs?
+
+A few reasons I found:
+
+- Not everyone can afford to build and run their own AI model. Training a model takes months and a lot of computing power. So companies like OpenAI build the model and let others use it through an API.
+- It helps them make money - they charge per use (like per 1000 words processed).
+- Developers can easily add AI to any app without worrying about how the model actually works, they just call the API.
+- The AI company can control who uses it and how, they can block misuse or enforce rules through the API.
+
+
+Q3. What is an API Key?
+
+An API key is basically a unique code that identifies you when you call an API. When you sign up for something like OpenAI, they give you a key that looks something like this:
+
+sk-xxxxxxxxxxxxxxxxxxxxxxxx
+
+Every time your program calls the API it sends this key along with the request. The server uses the key to know who is making the request and whether they are allowed to.
+
+
+Q4. Why should API Keys be kept secret?
+
+Because the API key is linked to your account and your billing. If someone else gets your key they can use the API as if they are you and you will get charged for it. For example if someone leaks an OpenAI API key on GitHub, bots scan for these keys and start making thousands of requests within minutes and the owner gets a huge bill.
+
+Also some keys give access to private data so it's a security issue too.
+
+Rule: never put your API key directly in code that gets shared or uploaded to GitHub. Use environment variables instead.
