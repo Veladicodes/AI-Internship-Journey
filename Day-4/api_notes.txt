@@ -1,0 +1,58 @@
+Day 4 Notes - APIs and JSON
+
+
+What is an API?
+
+API = Application Programming Interface
+
+Basically its a way for two different programs/apps to talk to each other and share data. Like when you use a weather app and it shows the temperature - that app is calling a weather API to get that data, it doesnt store the weather itself.
+
+Simple way to think about it - imagine a waiter in a restaurant. You tell the waiter what you want, the waiter goes to the kitchen and brings it back. The waiter here is the API. You dont go into the kitchen yourself.
+
+
+REST API
+
+REST = Representational State Transfer (dont need to memorize the full form honestly)
+
+A REST API uses HTTP (same thing your browser uses) to communicate. Most APIs you'll work with are REST APIs. The data is usually sent back in JSON format.
+
+example endpoint - https://jsonplaceholder.typicode.com/users
+
+
+Client and Server
+
+- Client = whoever is making the request (your browser, your python script, postman)
+- Server = whoever receives the request and sends back data
+
+So when I run my python script to fetch users, my script is the client and jsonplaceholder is the server.
+
+
+HTTP Methods
+
+These are basically the 4 main actions you can do with data:
+
+- GET - fetch/read data (doesnt change anything)
+- POST - send new data to create something
+- PUT - update existing data
+- DELETE - delete something
+
+Most of the time for reading data from an API we use GET.
+
+
+Status Codes
+
+The server sends back a number to tell you what happened with your request.
+
+Success:
+- 200 = OK, everything worked
+- 201 = Created (you posted something and it got created)
+
+Errors on my side (client errors):
+- 400 = Bad Request, I sent wrong data
+- 401 = Unauthorized, need to login or provide API key
+- 404 = Not Found, wrong URL
+
+Errors on their side (server errors):
+- 500 = Internal Server Error, something broke on their server
+
+Easy way to remember - 2xx means success, 4xx means I did something wrong, 5xx means they did something wrong.
