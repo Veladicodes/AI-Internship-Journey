@@ -1,0 +1,10 @@
+{
+    "name": "Adithya",
+    "age": 19,
+    "role": "AI Intern",
+    "skills": ["Python", "basics of AI", "APIs"],
+    "hobbies": ["coding", "watching tech videos"],
+    "college": "student",
+    "currently_learning": "APIs and JSON",
+    "favourite_language": "Python"
+}
