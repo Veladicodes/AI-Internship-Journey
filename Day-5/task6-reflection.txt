@@ -1,0 +1,69 @@
+Reflection - Day 5
+
+---
+
+What makes a good prompt?
+
+specificity. that's the main thing i took away from today. a vague prompt gets a generic answer. the more precisely you describe what you want, the better the output.
+
+but it's not just about being specific with the question. it's also about giving context. "explain decorators" is a question. "explain decorators to someone who understands functions but has never seen them, step by step, with a real use case" is a prompt. completely different results.
+
+the things that consistently made my prompts better today:
+- saying who the answer is for (my level, my background)
+- specifying what to include rather than leaving it to the model
+- giving it a role when i needed expert-style answers
+- asking for a specific format (code example, step by step, bullet points)
+
+honestly before today i was writing prompts the same way i'd type into a google search. thats not how it works. you get out what you put in.
+
+---
+
+What mistakes lead to poor AI responses?
+
+being too vague is the biggest one. "tell me about python" gives you a paragraph that could be from any intro tutorial. doesn't help anyone.
+
+the other big one i noticed: not specifying format. if i want code i have to ask for code. if i want it short i have to say that. if i want bullet points, say bullet points. the model defaults to whatever feels natural to it which isnt always what you need.
+
+asking multiple different questions in one prompt also backfires. when i tried that the answers were shallower across the board. better to focus on one thing.
+
+and then there's accepting the first answer as final. i did this a few times and the follow-up question always got a better response than the original. "can you go deeper on X" or "give me an example of that" almost always improved things significantly.
+
+the last one is probably the most important to keep in mind: believing everything it says. it presents wrong information with the same confidence as correct information. no way to tell from the tone. have to verify anything that matters.
+
+---
+
+Which technique gave the best results?
+
+for actually learning something from scratch: step-by-step, not even close. when i asked it to explain decorators step by step starting from first-class functions, i understood them in a way i hadn't from the basic or detailed prompts. building from the foundation up instead of just showing the final answer is how real teaching works.
+
+for getting practical advice with real-world context: role-based was better. telling it to act as a senior developer mentoring a junior got me the "common mistakes" angle and the "when would you actually use this in production" perspective that none of the other prompts gave me.
+
+if i had to pick one for general use it would be role-based + step-by-step combined. that combination gave the best results across everything i tried today.
+
+---
+
+How can AI help developers be more productive?
+
+the most obvious thing is speed on repetitive tasks. generating boilerplate, writing test cases, writing docstrings - these things used to take time. with AI it's seconds. that time adds up.
+
+for learning it's also genuinely useful in a way textbooks aren't. i can ask it to explain something at my specific level, ask for a different analogy if the first one didn't click, ask for a harder or easier example. that back and forth is something you can't do with documentation.
+
+debugging is another one. pasting an error message and getting an explanation of what caused it - and why - saves a lot of time staring at code trying to figure out what went wrong.
+
+the thing i found most useful for myself personally is the "explain this code i found online" use case. i used to copy code from stack overflow without fully understanding it. now i paste it into ChatGPT and ask it to explain every line. much better habit. actually understand what i'm running.
+
+the important thing is that it handles mechanical/repetitive work well, not judgment calls. architecture decisions, what to build, what tradeoffs to make - that's still on you. treating AI like it replaces thinking leads to bad outcomes.
+
+---
+
+What limitations did you notice?
+
+hallucinations are real. at one point today it mentioned a function parameter that i'm fairly sure doesn't exist in current python. said it with complete confidence, no "i might be wrong about this." i only caught it because i happened to know the area. had i been a beginner i would have trusted it and been confused when it didn't work.
+
+it can't run code. everything it writes is based on reasoning about what should work. i ran into one case where it wrote code that looked right but had an issue i only found when i actually executed it. you always have to test.
+
+in longer conversations it starts losing track of earlier context. towards the end of my session it gave an answer that didn't quite line up with something it had explained at the start. the context window thing in practice.
+
+the overconfidence is probably the most practically dangerous thing. a wrong answer with "i'm not certain but..." is easy to handle. a wrong answer delivered the same way as a correct one is easy to miss. especially if you're new to the topic and can't evaluate it.
+
+knowledge cutoff also matters for anything technical. library versions, new features, recent changes to APIs - it might just not know about them. always check current docs for anything version-specific.
