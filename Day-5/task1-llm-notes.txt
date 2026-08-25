@@ -1,0 +1,82 @@
+LLM Notes - Day 5
+
+okay so i spent most of the morning going through these topics. writing down what i understood in my own words here.
+
+---
+
+LLMs
+
+Large Language Model. basically a model thats been trained on a ridiculous amount of text - we're talking books, reddit, wikipedia, stackoverflow, basically everything thats ever been written online. it learns the patterns between words and sentences so that when you give it a prompt it can generate a response that makes sense.
+
+the "large" in large language model refers to two things - the training data (huge) and the number of parameters (also huge, like billions). more parameters = more patterns it can store.
+
+examples: ChatGPT is built on GPT-4 (OpenAI), Gemini is Google's, Claude is Anthropic's, Meta has LLaMA. theyre all LLMs trained differently on different data.
+
+one thing thats important to understand is that the model isnt actually thinking or knowing anything. its predicting what word comes next based on what it learned. which is why it sometimes confidently says things that are completely wrong. its not lying, it just doesnt know what it doesnt know.
+
+---
+
+Tokens
+
+took me a bit to get this one right. i thought tokens = words but thats not exactly it.
+
+a token is the smallest chunk of text the model processes. could be a whole word, part of a word, a punctuation mark, even a space. depends on how common the word is basically.
+
+- short common words ("the", "is", "a") = 1 token each
+- longer or less common words get split up. "tokenization" would probably become something like "token" + "iz" + "ation"
+- numbers and punctuation count too
+
+rough rule: 1000 tokens is about 750 words. or flip it, 100 words ≈ 133 tokens.
+
+why does this matter? because:
+1. API usage is billed per token so longer prompts = more expensive
+2. models have a max token limit (the context window)
+3. when you paste a big block of code you're using up a LOT of tokens fast
+
+---
+
+Context Window
+
+this is basically the model's working memory. the max number of tokens it can hold in its head at once - both your input and its output combined.
+
+once you hit the limit, the model starts "forgetting" older parts of the conversation. its not selective, it just loses whatever was earliest.
+
+sizes differ a lot between models:
+- GPT-3.5 had like 4k tokens (small)
+- GPT-4 goes up to 128k
+- Claude is around 200k
+- Gemini 1.5 pro apparently has 1 million, which is wild
+
+i noticed this in practice actually. had a really long ChatGPT conversation once and towards the end it gave an answer that contradicted what it said at the start of the chat. makes sense now, it had forgotten.
+
+this matters a lot if you're building something with an AI - you have to think about what conversation history to keep and what to drop.
+
+---
+
+Temperature
+
+temperature controls how random the output is. scale is 0 to 1 (sometimes 0 to 2 depending on the model/platform).
+
+low temp = predictable, focused, almost the same answer every time
+high temp = more creative, more varied, sometimes weird
+
+when to use which:
+- writing code or debugging → low temp, you want accurate not creative
+- brainstorming or generating ideas → higher temp, want variety
+- general questions → somewhere in the middle, 0.5-0.7 range
+
+i think of it like this: low temp = the model picks the "safest" most likely next word every time. high temp = it takes more risks with its word choices.
+
+---
+
+Prompt Engineering
+
+okay this one i actually found the most interesting today.
+
+prompt engineering is just the skill of writing good prompts. sounds simple but there's actually a lot to it. the same question phrased differently can give you a completely different quality of answer.
+
+before today i was basically just typing questions like i'd type into google. after going through the techniques (zero-shot, few-shot, role-based, step-by-step) i started getting noticeably better responses.
+
+the main thing i took away: be specific. the model only knows what you tell it. if you want a beginner explanation, say that. if you want code, ask for code. if you want bullet points, specify that. it wont guess what you want, it'll just give you something generic.
+
+covered the actual techniques in detail in task 2 notes.
