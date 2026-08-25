@@ -1,0 +1,73 @@
+Bonus Challenge - Feynman Technique
+Day 5
+
+the feynman technique is a learning method where you try to explain a concept as simply as possible - as if teaching someone with no background. the idea being that if you can't explain something simply, you don't really understand it. gaps in your explanation = gaps in your understanding.
+
+prompt i used:
+"Teach me about [topic] using the Feynman Technique. Explain it as simply as possible, like you're teaching someone who has never heard of it before. No jargon. Use a real world analogy. Point out the part that confuses most beginners and explain that directly."
+
+topic i chose: recursion
+
+i picked recursion because it's something i've seen come up constantly but i've never felt fully confident with it. i understand what it does mechanically but the "why does it actually work" part was always a bit fuzzy for me.
+
+---
+
+what chatgpt said:
+
+it started with the russian nesting dolls analogy. you open a doll to find a smaller one inside. you open that to find an even smaller one. eventually you hit the smallest doll that doesn't open - thats your stopping point.
+
+recursion in code is the same thing. a function that calls a smaller version of itself, over and over, until it hits a case simple enough that it doesn't need to go further. that stopping point is called the base case.
+
+example:
+
+def countdown(n):
+    if n == 0:
+        print("Go!")
+        return
+    print(n)
+    countdown(n - 1)
+
+countdown(3)
+# 3, 2, 1, Go!
+
+it walked through what happens:
+countdown(3) prints 3, calls countdown(2)
+countdown(2) prints 2, calls countdown(1)
+countdown(1) prints 1, calls countdown(0)
+countdown(0) prints "Go!" and stops
+
+then it said the hardest part for beginners is understanding what happens after the base case. all those paused calls dont just vanish. they unwind back up. for countdown this doesn't matter much but for something like factorial it's what makes the math actually work.
+
+factorial example:
+def factorial(n):
+    if n == 1:
+        return 1
+    return n * factorial(n - 1)
+
+factorial(3) becomes 3 * factorial(2) becomes 3 * 2 * factorial(1) becomes 3 * 2 * 1 = 6. they all resolve on the way back up.
+
+it described the calls as "stacking like plates" and then resolving from the top down once the smallest plate (base case) is reached.
+
+---
+
+my evaluation
+
+was it easy to understand? yes actually. the nesting doll analogy was the best visual i've encountered for recursion. i've seen it explained with fibonacci a hundred times and it never clicked as cleanly.
+
+did it avoid jargon? mostly. "base case" appeared but it was explained immediately so it was fine. thats kind of a necessary term.
+
+did it address the hardest part? yes and this is where the feynman prompt added real value. it identified the "unwinding" as the confusing part. honestly i hadnt consciously identified that as my gap but when it said it i realised that was exactly where my mental model broke down. i understood the going-down part fine. the coming-back-up part was fuzzy.
+
+did it reveal gaps? yes. i can trace countdown(3) fine now. but if you gave me factorial(5) and asked me to trace every single step i'd still struggle. especially keeping track of what each call is "waiting on." i understand the concept but havent internalised it yet. needs more practice.
+
+---
+
+thoughts on using feynman prompting generally
+
+it works better than just asking for an explanation. specifically the "point out what confuses most beginners" part is what made the difference. it surfaces the conceptual sticking point instead of just explaining the mechanics.
+
+the analogy-first approach helped too. most AI explanations jump straight to code. the feynman framing pushed it to establish a mental model first, which is how it should be taught.
+
+the limitation i noticed: the AI guesses what "most beginners" find hard based on training data. that might not match what you specifically find hard. so i'd recommend adding your specific confusion to the prompt: "i understand X but i'm not clear on why Y happens - use the feynman technique with a focus on that."
+
+the follow-up i'd suggest to myself or anyone: after getting the explanation, try to explain it back in your own words and ask the AI to correct anything wrong. that closes the loop and actually tests if you understood it or just think you did.
