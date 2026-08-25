@@ -1,0 +1,78 @@
+Prompt Comparison Report - Day 5
+
+Topic: Python
+Question: how do python decorators work?
+Tool: ChatGPT (GPT-4o)
+
+ran the same question four different ways. wrote down what i noticed each time.
+
+---
+
+Prompt 1 - Basic
+
+what i typed: "What are Python decorators?"
+
+what i got back: a short explanation saying decorators are functions that wrap other functions and modify their behavior, uses the @ symbol, showed a basic wrapper example with print("before") and print("after"). probably 150 words total.
+
+observations:
+it was technically correct but i wouldnt say i learned much from it. if i already knew decorators this would be a fine reminder. if i was learning for the first time this wouldnt be enough. it didnt explain why you'd use one, no real world example, nothing about the @ symbol being shorthand for anything.
+
+felt like the first paragraph of a documentation page. accurate, boring, surface level.
+
+---
+
+Prompt 2 - Detailed
+
+what i typed: "Explain how Python decorators work in detail. Include what problem they solve, how to write one that accepts arguments, what functools.wraps does and why it matters, and give me 2 real world examples with full runnable code."
+
+what i got back: much longer. covered the DRY principle as the reason decorators exist, the basic pattern, then a decorator that takes arguments (which involves a triple-nested function thing i hadnt seen before), then functools.wraps with a clear explanation of why forgetting it breaks things like help(), then a timing decorator and a login_required style decorator as real world examples.
+
+observations:
+significantly better. the functools.wraps stuff was genuinely new to me. the timing decorator is something i can actually use. the login example made it click why decorators are so common in web frameworks.
+
+thing i noticed: the model wouldnt have included any of this if i hadnt specifically asked. it only gave me what i asked for. which means the quality difference between prompt 1 and 2 is entirely on me, not the model.
+
+---
+
+Prompt 3 - Role-Based
+
+what i typed: "Act as a senior Python developer who's been coding for 10 years and is mentoring a junior. Explain Python decorators to me. I understand functions but have never used decorators before. Include practical advice and common mistakes."
+
+what i got back: started with an analogy comparing decorators to gift wrapping (same content, different presentation). then built from what i said i already know (functions) to the new concept. the "common mistakes" section was the most useful part - forgetting to return the wrapper function, not calling the wrapped function inside the wrapper, forgetting functools.wraps and breaking introspection.
+
+observations:
+this one had a noticeably different feel. more like a person talking than documentation. the analogy made the concept click faster than any of the other prompts.
+
+the mistakes section wouldnt have appeared in a basic prompt. it appeared here because a mentor would naturally warn you about the things that trip juniors up. that's the value of role-based prompting - it unlocks information the model holds but wouldnt volunteer otherwise.
+
+---
+
+Prompt 4 - Step-by-Step
+
+what i typed: "Explain Python decorators step by step. Start from the very basics and build up. I want to understand each piece before the next one."
+
+what i got back: genuinely the most educational response out of the four.
+
+step 1 was that functions are first class objects (you can assign them to variables)
+step 2 was passing a function as an argument to another function
+step 3 was returning a function from a function (closures)
+step 4 was combining those two things - which it then revealed IS what a decorator is
+step 5 was the @ symbol just being shorthand for func = decorator(func)
+step 6 was handling any function signature with *args **kwargs
+step 7 was functools.wraps
+
+observations:
+the reason this worked better than the others is that it had to explain closures and higher order functions first. so by the time decorators appeared i actually understood the building blocks. the other prompts just showed me the final form without the foundation.
+
+this is the only prompt where i felt like i genuinely understood decorators rather than just recognising the syntax.
+
+---
+
+summary
+
+basic: fine for revision, useless for learning something new
+detailed: good if you know what to ask for (which requires some prior knowledge)
+role-based: best for readable responses with practical wisdom
+step-by-step: best for understanding something from scratch
+
+if i had to pick one going forward for learning a new concept it would be step-by-step, probably combined with a role (act as a teacher, explain step by step). that combination gave the best results in everything i tried today.
