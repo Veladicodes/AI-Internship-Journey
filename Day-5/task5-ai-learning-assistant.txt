@@ -1,0 +1,339 @@
+AI Learning Assistant - Task 5
+Day 5 AI Internship
+
+used ChatGPT (GPT-4o) for this. documented the whole session below as close to the actual conversation as i could.
+
+---
+
+PYTHON FUNCTIONS
+----------------
+
+me: Act as a programming teacher. Explain Python functions to me - what they are, why we use them, how they work. Keep it beginner friendly.
+
+chatgpt: Sure! The best way to think about a function is like a recipe. You write the recipe once, give it a name, and then you can "cook" it as many times as you want without rewriting anything.
+
+In Python:
+
+def greet(name):
+    return "Hello, " + name + "!"
+
+print(greet("Adithya"))   # Hello, Adithya!
+print(greet("Priya"))     # Hello, Priya!
+
+You wrote greet once. You can call it with any name. That's the whole point.
+
+Quick vocab:
+- def: how you define a function
+- name: the parameter (a placeholder for the actual value)
+- return: sends a value back to whoever called the function
+
+---
+
+me: Give me 3 examples of functions, easy to harder. One with no parameters, one with multiple, one with a default value.
+
+chatgpt:
+
+No parameters:
+def say_hello():
+    print("Hello!")
+
+say_hello()
+
+Multiple parameters:
+def add(a, b):
+    return a + b
+
+print(add(10, 25))   # 35
+
+Default parameter:
+def power(base, exponent=2):
+    return base ** exponent
+
+print(power(3))     # 9
+print(power(3, 3))  # 27
+
+The last one - if you don't pass an exponent it defaults to 2. If you do pass one it uses that instead.
+
+[my note: i didnt know you could do default parameters like that. the power example made it super clear]
+
+---
+
+me: Create 3 exercises for me, easy to hard. Just the problems, not the solutions.
+
+chatgpt:
+
+Exercise 1 (easy):
+Write celsius_to_fahrenheit - takes a celsius temp, returns fahrenheit.
+Formula: F = (C x 9/5) + 32
+Test it with 0, 100, and 37.
+
+Exercise 2 (medium):
+Write is_palindrome - takes a string, returns True if palindrome, False if not.
+Ignore uppercase. "Racecar" -> True, "hello" -> False
+
+Exercise 3 (hard):
+Write flatten_list - takes a nested list, returns one flat list.
+[[1, 2], [3, [4, 5]], 6] -> [1, 2, 3, 4, 5, 6]
+
+---
+
+my solutions:
+
+# exercise 1
+def celsius_to_fahrenheit(c):
+    return (c * 9/5) + 32
+
+print(celsius_to_fahrenheit(0))    # 32.0
+print(celsius_to_fahrenheit(100))  # 212.0
+print(celsius_to_fahrenheit(37))   # 98.6
+
+# exercise 2
+def is_palindrome(s):
+    s = s.lower()
+    return s == s[::-1]
+
+print(is_palindrome("Racecar"))  # True
+print(is_palindrome("hello"))    # False
+
+# exercise 3 - this took me a while. had to look up isinstance
+def flatten_list(lst):
+    result = []
+    for item in lst:
+        if isinstance(item, list):
+            result.extend(flatten_list(item))
+        else:
+            result.append(item)
+    return result
+
+print(flatten_list([[1, 2], [3, [4, 5]], 6]))
+
+---
+
+me: Review my solutions please.
+
+chatgpt:
+Exercise 1: Perfect. Correct formula, clean code.
+
+Exercise 2: Good. s[::-1] is the right way to reverse a string in Python. Calling .lower() first handles the case issue properly.
+
+Exercise 3: This works and you used recursion which is impressive. isinstance(item, list) is the correct check. One thing to be aware of - if the input somehow had an empty list inside it this would still work fine. Good solution overall.
+
+[my note: the recursion in exercise 3 i figured out by trial and error. still not 100% sure i understand why it works, i just know it does. need to study recursion properly at some point]
+
+---
+
+APIS
+----
+
+me: Explain what an API is and how HTTP APIs work. Use a real world analogy.
+
+chatgpt: Think of a restaurant. You sit down, look at the menu, tell the waiter what you want, and they bring it back. You never go into the kitchen yourself.
+
+In this:
+- you = the client (your app)
+- the menu = the API documentation (what requests are available)
+- the waiter = the API
+- the kitchen = the server/database
+
+The kitchen doesn't care who you are. It just receives orders and sends food. APIs work the same - they give applications a standardized way to request data or services.
+
+HTTP APIs specifically:
+1. your app sends a request to a URL
+2. the request has a method (GET to read, POST to create, PUT to update, DELETE to remove)
+3. server processes the request
+4. server sends back a response with a status code and usually JSON data
+5. your app reads the response
+
+---
+
+me: Show me how to call a real API in Python. One that doesn't need a key.
+
+chatgpt: Use JSONPlaceholder - it's a free fake API for testing.
+
+import requests
+
+response = requests.get("https://jsonplaceholder.typicode.com/posts/1")
+
+print(response.status_code)  # 200 = success
+print(response.json())       # the response as a python dict
+
+You'll get back something like:
+{"userId": 1, "id": 1, "title": "...", "body": "..."}
+
+Always check status_code before using the data. 200 = ok, 404 = not found, 500 = server error.
+
+[my note: i actually ran this. first time i've called an API from python code. worked first try]
+
+---
+
+me: Give me 2 exercises. One basic GET, one where I process the response.
+
+chatgpt:
+Exercise 1:
+Fetch all posts from https://jsonplaceholder.typicode.com/posts
+Print only the titles of the first 5.
+
+Exercise 2:
+Fetch all users from https://jsonplaceholder.typicode.com/users
+Print only users whose name starts with a vowel (A, E, I, O, U).
+Print their name and email.
+
+---
+
+my solutions:
+
+# exercise 1
+import requests
+
+response = requests.get("https://jsonplaceholder.typicode.com/posts")
+posts = response.json()
+
+for post in posts[:5]:
+    print(post["title"])
+
+# exercise 2
+response = requests.get("https://jsonplaceholder.typicode.com/users")
+users = response.json()
+
+for user in users:
+    if user["name"][0].upper() in "AEIOU":
+        print(user["name"], "-", user["email"])
+
+---
+
+me: Review these.
+
+chatgpt:
+Exercise 1: Correct. posts[:5] is the right approach. Suggestion: check response.status_code == 200 before calling .json(), in case the API is down. Good habit to build.
+
+Exercise 2: Works. The vowel filter is correct. Minor note - if somehow a name was empty this would crash on [0]. Wouldn't happen with this API but worth knowing.
+
+Both are clean and readable.
+
+[my note: the status code check came up again. making it a habit from now on]
+
+---
+
+JSON
+----
+
+me: Explain JSON. What it is, the rules, why it's used everywhere.
+
+chatgpt: JSON = JavaScript Object Notation. Don't let the name throw you off, it's used in basically every programming language.
+
+It's just a text format for storing and sharing data. It became the standard because it's human readable and easy for machines to parse. Way simpler than what came before it (XML).
+
+Rules:
+- keys must be strings in double quotes
+- values can be string, number, boolean (true/false), null, array, or another object
+- arrays use [ ], objects use { }
+- no trailing commas (this trips everyone up at some point)
+- no comments
+
+Example:
+{
+  "name": "Adithya",
+  "age": 20,
+  "skills": ["Python", "AI"],
+  "active": true
+}
+
+In Python, json module:
+- json.loads(string) → string to dict
+- json.dumps(dict) → dict to string
+- json.load(file) → file to dict
+- json.dump(dict, file) → dict to file
+
+The s stands for string. loads/dumps = string. load/dump = file.
+
+[my note: loads vs load was confusing until the "s = string" explanation. actually helpful]
+
+---
+
+me: Show examples - reading from file, writing to file, nested JSON.
+
+chatgpt:
+
+Reading:
+with open("data.json", "r") as f:
+    data = json.load(f)
+print(data["name"])
+
+Writing:
+import json
+person = {"name": "Adithya", "age": 20}
+with open("person.json", "w") as f:
+    json.dump(person, f, indent=4)
+
+Nested:
+data = {"user": {"profile": {"name": "Adithya", "skills": ["Python"]}}}
+name = data["user"]["profile"]["name"]
+skill = data["user"]["profile"]["skills"][0]
+
+---
+
+me: Two exercises. One parsing, one creating.
+
+chatgpt:
+
+Exercise 1:
+json_str = '{"students": [{"name": "Alice", "score": 88}, {"name": "Bob", "score": 72}, {"name": "Carol", "score": 95}]}'
+Parse it. Print the second student's name. Print the average score.
+
+Exercise 2:
+Create a dict of your own profile: name, age, city, list of 3 skills, nested contact dict with email and phone.
+Convert to JSON string and print with 4-space indent.
+
+---
+
+my solutions:
+
+# exercise 1
+import json
+
+json_str = '{"students": [{"name": "Alice", "score": 88}, {"name": "Bob", "score": 72}, {"name": "Carol", "score": 95}]}'
+
+data = json.loads(json_str)
+students = data["students"]
+
+print(students[1]["name"])  # Bob
+
+total = sum(s["score"] for s in students)
+print(f"Average: {total / len(students)}")  # 85.0
+
+# exercise 2
+my_profile = {
+    "name": "Adithya",
+    "age": 20,
+    "city": "Bangalore",
+    "skills": ["Python", "Machine Learning", "APIs"],
+    "contact": {
+        "email": "adithya@example.com",
+        "phone": "9999999999"
+    }
+}
+
+print(json.dumps(my_profile, indent=4))
+
+---
+
+me: Review both.
+
+chatgpt:
+Exercise 1: Correct. json.loads() is right for a string. Generator expression in sum() is clean. f-string for the average is good. No issues.
+
+Exercise 2: Good structure. indent=4 is the standard. Note: never hardcode real contact info in actual code, load from environment variables instead. For this exercise it's fine.
+
+Both solid.
+
+---
+
+wrapping up
+
+this format of explain → example → exercise → solve → review worked really well. the exercises are what made the difference. just reading explanations doesnt make things stick the same way.
+
+main things i learned today from this session:
+- default parameters in functions (genuinely didn't know this syntax)
+- actually calling a real API with python for the first time
+- json.loads vs json.load (the s = string thing)
+- always check status codes before using response data
