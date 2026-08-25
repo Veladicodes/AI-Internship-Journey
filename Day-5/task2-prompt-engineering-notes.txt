@@ -1,0 +1,79 @@
+Prompt Engineering Techniques - Day 5
+
+tried all of these on ChatGPT today. writing down what i learned + my own take on each.
+
+---
+
+Zero-Shot Prompting
+
+just ask the question. no examples, no setup, straight to it. the model uses whatever it already knows to answer.
+
+example from the task: "Explain APIs in simple terms."
+i also tried: "what is the difference between a list and a tuple in python?"
+
+honestly this is what most people do without realising it has a name. results are fine for simple stuff but if you need something specific or in a specific format it usually falls short. the model just gives you its default "here is a general explanation" response.
+
+good for: quick questions, definitions, simple explanations
+not great for: anything that needs a specific format or depth
+
+---
+
+Few-Shot Prompting
+
+you give it a few examples of what you want before asking the actual question. basically showing it the pattern instead of describing it.
+
+i tried this for sentiment:
+"classify the sentiment:
+'this product is amazing' -> positive
+'broken on arrival, waste of money' -> negative
+'it works as described' -> ?"
+
+it got "neutral" straight away. without the examples it might have said positive just because the sentence was neutral-positive leaning.
+
+another thing i used it for was getting consistent output format. if i show it 2 examples of how i want the answer structured, it follows that structure for the new question. way more reliable than trying to describe the format in words.
+
+downside: uses more tokens because you're pasting examples every time. for short tasks its fine, for longer ones adds up.
+
+---
+
+Role-Based Prompting
+
+tell the model to act as someone specific. "act as a senior python developer" or "you are a patient teacher explaining to a beginner."
+
+from the task: "Act as a Senior Python Developer and explain decorators."
+
+i compared this side by side with just "explain decorators" and the difference was actually significant. the role-based one:
+- skipped the basics i already know
+- talked about when to actually use decorators in real projects
+- mentioned functools.wraps which the basic prompt never brought up
+- warned about common mistakes (things a real developer would know from experience)
+
+the audience targeting works too. "act as a teacher explaining to a 12 year old" vs "act as a senior dev explaining to a junior" are very different responses even for the same topic.
+
+one thing to keep in mind: just because you call it a "senior developer" doesnt mean it actually has senior-level accuracy. it still makes mistakes. its more about tone and perspective than actual expertise level.
+
+---
+
+Step-by-Step Prompting
+
+tell it to explain something step by step. also called chain-of-thought prompting apparently.
+
+from the task: "Explain how an API request works step by step."
+
+this is by far my favourite for actually learning something. when the model breaks it down step by step it cant skip the parts that are prerequisites for understanding the next thing. so you end up with an explanation that builds properly.
+
+when i used it for decorators it started from "functions are objects in python" and built up to the decorator syntax. without that foundation the decorator stuff wouldnt have made as much sense.
+
+also useful for debugging - "walk me through why this code might be failing step by step" gets a much more useful response than just "why is this broken."
+
+the output is longer but the length feels earned, not padded.
+
+---
+
+what i think after trying all four
+
+step-by-step gives the deepest understanding. role-based gives the most practical and human-feeling responses. zero-shot is fine for quick things. few-shot is best when format consistency matters.
+
+the best prompts i found combined at least two of these. something like "act as a python teacher and explain X step by step" consistently gave better results than any single technique alone.
+
+honestly i wish i had known about these earlier. the difference between a bad prompt and a good one is the difference between a generic wikipedia-style answer and something actually useful.
