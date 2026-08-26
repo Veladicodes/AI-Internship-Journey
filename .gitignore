@@ -1,0 +1,16 @@
+﻿# Environment & Virtual Environments
+.env
+.venv/
+env/
+venv/
+ENV/
+
+# Python cache & bytecode
+__pycache__/
+*.py[cod]
+*.class
+
+# Logs & temporary run files
+*.log
+chat_log.json
+chat_history.txt
