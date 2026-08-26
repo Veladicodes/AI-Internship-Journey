@@ -1,0 +1,59 @@
+Day 6 Notes: Study Log on AI APIs & LLM Integration
+
+So today I spent some time reading up on how AI APIs actually work behind the scenes before writing any code. Here are my raw, plain-English notes on the main concepts so I don't forget how it all fits together:
+
+1. What actually is an AI API?
+API stands for Application Programming Interface. In the AI world, you can think of it like a digital bridge. 
+Instead of trying to download a massive, 500GB LLM model and running it directly on my own laptop (which would definitely catch fire or explode), I can use the API to send a prompt over the internet to a server run by Google or OpenAI. Their supercomputers do the heavy lifting of running the model and then send the answer right back to my code.
+Analogy: It's exactly like ordering food at a restaurant. I don't need to build a massive commercial kitchen at home; I just call the kitchen (the API), tell them what I want (the request), and they deliver the food to my door (the response).
+
+2. Why do these AI companies offer APIs instead of just giving us the models?
+It basically boils down to:
+- Compute constraints: Running models requires serious GPU hardware. By hosting them centrally, companies can serve millions of requests efficiently.
+- IP Protection: If they gave away the model weights, anyone could copy or steal their tech. The API keeps the source code and weights secure on their servers.
+- Making money: They charge developers based on how much they use (per request or per token).
+- Easy updates: They can upgrade the model on their side, and my local script gets the benefits instantly without me having to change a single line of code.
+
+3. The API Key (Super Important!)
+This is basically a secret password combined with a digital ID. It's just a long string of random letters and numbers. 
+When my code makes a request to the Gemini API, it attaches this key. It tells the server, "Hey, this is Adithya, let me in and charge this to my account."
+Why it's crucial: If someone else gets my key, they can run up massive bills on my account. This is why we never hardcode them in the script or push them to GitHub. We load them from a secure .env file instead.
+
+4. What is a "Request"?
+This is the block of data my python app sends to the AI server. 
+It usually contains:
+- The prompt/question (like "Explain Python in one sentence")
+- The model name (like "gemini-1.5-flash")
+- Config settings (like temperature, which controls how creative or random the AI gets)
+Example: 
+```json
+{
+  "model": "gemini-1.5-flash",
+  "contents": "Explain APIs like I'm 5"
+}
+```
+
+5. What is a "Response"?
+This is what the AI server sends back to my script after processing the request. 
+It's usually a structured JSON object containing:
+- The actual text response
+- Metadata (why it stopped generating, which exact model handled it, etc.)
+- Token usage statistics (so I know how much it cost)
+Example:
+```json
+{
+  "text": "An API is like a waiter who takes your order...",
+  "finish_reason": "STOP",
+  "usage": { "prompt_tokens": 12, "candidates_tokens": 15 }
+}
+```
+
+6. What on earth is a Token?
+LLMs don't read words the way humans do. They chop text up into tiny pieces called tokens. 
+A token can be a character, a syllable, a whole word, or part of a word.
+As a rule of thumb: 1 token is roughly 4 characters in English, or about 0.75 words.
+So, the sentence "Python is awesome!" gets broken down into maybe 4 or 5 tokens: 
+["Py", "thon", " is", " awesome", "!"]
+This is super important because:
+- We are billed per 1,000 or 1,000,000 tokens.
+- Models have a "context window" (the absolute maximum tokens they can read and write in a single session). If the chat history gets longer than this window, the model starts forgetting earlier messages or cuts off.
