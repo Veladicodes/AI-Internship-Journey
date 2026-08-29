@@ -1,0 +1,38 @@
+Week 1 Chatbot Presentation Outline
+----------------------------------
+
+This is a quick guide to help walk through the presentation. It explains what I learned, how the chatbot is designed, and the challenges I solved.
+
+1. Introduction
+My presentation is about the Terminal AI Chatbot I built this week. The main goal of the project was to move from writing basic isolated Python logic to building a real-world script that calls an external AI API securely and handles user inputs dynamically.
+
+2. What I Learned This Week
+* Python: Got more comfortable using functions to modularize code, and dicts/lists to parse complex API structures.
+* APIs and JSON: Learned how web requests transmit structured JSON data between the client (my script) and Google's backend servers.
+* Security: Used python-dotenv to pull the GEMINI_API_KEY from a local .env file. I added it to .gitignore to ensure I never commit secret keys to GitHub.
+* LLMs: Learned that models are stateless. To keep a conversation going, the script has to pass the entire history of the chat back to Google's API with every new message.
+
+3. How the Chatbot Works
+* The script starts up, reads the API key, and boots an active chat session using the official google-genai library.
+* It uses a continuous while loop to wait for inputs. If you type a message, the SDK packages it with the active session history.
+* The application runs fallback checks. If gemini-2.5-flash fails, it automatically tries gemini-1.5-flash and gemini-1.5-pro so the program doesn't crash on network hiccups.
+* When Gemini replies, the text is printed in cyan and instantly written to two log files: chat_history.txt (for easy reading) and chat_log.json (for structured data).
+
+4. Today's Features
+* Timestamps: Prints localized time tags [HH:MM:SS] on both user inputs and AI replies.
+* Command Checking: If a message starts with a slash, it's intercepted locally so we don't call the API.
+  - /help prints a list of valid shortcuts.
+  - /clear clears the console window and repaints the welcome screen.
+  - /history queries get_history() to show active turns and session info.
+
+5. Challenges I Solved
+* Legacy SDK docs: Most tutorials online use outdated google-generativeai libraries. When the history counts broke, I loaded a python terminal and ran dir() to find the new get_history() method.
+* Console support: Windows command prompt doesn't show ANSI colors by default. I imported windll from ctypes to configure virtual terminal processing so colors render nicely.
+* Piped tests: Handled script exits cleanly when commands are fed programmatically.
+
+6. Summary & Next Steps
+* Key takeaway: Security and polish (like clean headers and quick clear commands) make a script feel like a finished product.
+* What I want to learn next:
+  - RAG (Retrieval-Augmented Generation) so the bot can answer questions based on my local PDFs.
+  - Database logging using SQLite.
+  - Building a web UI using Streamlit to get out of the terminal.

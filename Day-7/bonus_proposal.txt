@@ -1,0 +1,43 @@
+Project Proposal: PantryPal AI (Smart Recipe & Waste Optimizer)
+--------------------------------------------------------------
+
+
+1. Problem Statement
+--------------------
+Every week, households throw away lots of food because ingredients spoil before they can be used. People also experience "decision fatigue" when looking inside their fridge. They see a bunch of random ingredients (like half an onion, some yogurt, and pasta) but don't know how to turn them into a meal, leading to:
+* Financial waste from thrown-out groceries.
+* Environmental impact from food waste going to landfills.
+* Stress and friction in planning daily meals.
+
+
+2. Target Users
+---------------
+* Busy professionals and students who want quick recipe ideas using whatever is currently in their kitchen.
+* Eco-conscious cooks looking to run a zero-waste household.
+* Novice home cooks who need guidance and ingredient substitution ideas.
+
+
+3. Proposed AI Solution
+-----------------------
+PantryPal AI is a mobile/web app that turns household ingredients into instant recipe ideas:
+* Fridge Scanner: Snaps a photo of the fridge or pantry shelf. A vision model scans the image to identify ingredients (like carrots, chicken, or cheese) and flags items that look like they need to be used soon.
+* Recipe Generator: Takes the ingredient list and creates a custom recipe, adapting to dietary preferences (like vegan, gluten-free, or low-carb).
+* Smart Substitutions: Automatically updates recipes based on what's available (like substituting normal milk with almond milk).
+* Minimalist Shopping Lists: If a user is missing a couple of items to make a recipe, the app generates a shopping list for only those missing ingredients.
+
+
+4. Technologies to Use
+----------------------
+* User Interface: React Native (mobile app) or Next.js (web dashboard).
+* Image & Text AI: Gemini 2.5 Flash. It supports vision (image inputs), is very fast, and is cost-efficient.
+* Backend: Python using FastAPI to handle routing and calling the AI client.
+* Database: PostgreSQL or SQLite to store user preferences and favorited recipes.
+* Hosting: Google Cloud Run for hosting the backend application container.
+
+
+5. Expected Benefits
+--------------------
+* Saves money by prioritizing ingredients before they expire.
+* Cuts down on household food waste.
+* Reduces daily stress about deciding what to cook.
+* Easy to use by simply uploading a photo instead of typing out a long list.
