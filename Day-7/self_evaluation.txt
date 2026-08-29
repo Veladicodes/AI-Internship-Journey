@@ -1,0 +1,24 @@
+Self Evaluation - Week 1
+------------------------
+
+Here are my answers to the self-evaluation questions:
+
+1. What was the most interesting topic this week?
+The most interesting thing was learning how APIs work. Before this week, I didn't really understand how code connects to massive models in the cloud. Seeing my Python script send a payload, get a JSON response from Google, and parse it in real-time made me realize that AI development is basically web systems engineering mixed with prompting.
+
+2. Which topic did you find difficult?
+Setting up virtual environments and managing API credentials securely was a bit tricky. Keeping .env files out of my git commits and making sure they load properly required a lot of care. Also, dealing with outdated legacy SDK documentation was hard, since Google recently updated their package.
+
+3. What problem did you solve that made you feel confident?
+Solving the AttributeError on the Chat history object made me feel good. When the history counts broke, instead of searching online, I opened python in the terminal, loaded the SDK client, and used the dir() command to inspect the chat object. That's how I found the new get_history() method. Finding the bug and fixing it on my own was a great confidence boost.
+
+4. How comfortable are you with Python (1-10)?
+Rating: 8 / 10
+I feel comfortable with functions, loops, lists, dictionaries, and handling basic exceptions. I want to learn more about object-oriented programming (OOP) and asynchronous patterns since we'll be building more complex applications next week.
+
+5. How comfortable are you with AI concepts (1-10)?
+Rating: 7 / 10
+I get the basics: how LLMs work, prompt engineering (zero-shot, few-shot, system instructions), and their stateless nature. I still need to learn about vector databases and RAG (Retrieval-Augmented Generation) next week.
+
+6. What is one goal you have for next week?
+My main goal is to build a basic RAG pipeline. I want to make a chatbot that can read custom PDF or TXT documents and answer questions based on their contents.

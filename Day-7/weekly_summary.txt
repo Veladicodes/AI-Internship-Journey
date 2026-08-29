@@ -1,0 +1,26 @@
+Week 1 Learning Summary
+-----------------------
+
+This was my first week on the AI internship, and it went from learning basics to putting together a working chatbot. Here's a quick summary of the things I covered:
+
+1. Python Basics, Functions, and Loops
+- Python basics: I practiced using lists and dictionaries. Dictionaries are super important because APIs send and receive data in a key-value format.
+- Functions (def): Writing functions makes code easier to read. Instead of writing one huge script, I broke things up into helper functions like setup_api_client() and print_header().
+- Loops: I used a while loop to keep the chat running continuously until the user says exit. I also used a for loop to check fallback models in case the default Gemini model went down.
+
+2. APIs and JSON
+- APIs: Before this week, I didn't really get how they worked. Now I know an API is just a web URL that lets two programs talk. My Python code is the client, and it sends requests to Google's servers.
+- JSON: This is just structured text used to pass data back and forth. I learned to use json.load() to read saved logs and json.dump() to write new chat entries to chat_log.json.
+
+3. Git and GitHub
+- I learned how to track changes, make commits, and push files to GitHub.
+- The most important thing was learning about safety. You should never upload API keys. I learned to put my key in a .env file and add it to .gitignore so it stays local.
+
+4. LLMs and Prompt Engineering
+- LLMs (Large Language Models): These are massive networks that predict the next word. A big thing I learned is that they are stateless—meaning they don't remember previous messages unless you explicitly feed the history back to them with every single prompt.
+- Prompt Engineering: The instructions you give the model make a big difference. I played around with zero-shot (direct questions) and few-shot prompts (giving examples) to see how the response changes.
+- AI APIs: I used the official google-genai library to talk to Gemini. It abstracts away a lot of the manual history management.
+
+5. Building the Chatbot
+- Building the chatbot was the capstone of my first week. It combined everything: writing loop logic in Python, importing dependencies, connecting to Gemini over the internet, handling API keys safely, and writing logs to files.
+- Today I improved it by adding timestamps, slash commands, and screen clearing so it feels like a real app.
