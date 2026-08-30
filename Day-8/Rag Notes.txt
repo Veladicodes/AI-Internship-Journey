@@ -1,0 +1,8 @@
+Rag is basically a retrieval augmented generation.Usually  llm answers with the things that it is trained. When some question come and ask regarding about the things that the Ai doesn't know, it tries to guess. Not give an accurate answer. So for that purpose a related document is first retrieved, then its given in the prompt and from that the answer is given. This makes sure that a proper information is given.
+
+The Llm tend to hallucinate because they dont try to store the facts like a Databas, they always try to predict something. So when something like when which won the ipl 2056 it predicts and gives us some answer.Though the event hasn't even occured but the LLm tends predict this as truth and gives the output. This is said to be called as a hallucination.
+
+In the rag model when the user tends to ask some question, first a document is said to be fetched matching to the user requirement. Then this document is given to the GPT. Then from this gpt the answer is said to be generated. This is how hallucination can be prevented, as only valide proper information is said to be generated.
+
+Normal database is like we search the id or something. That value is to be given. But in vector database more than the same value , the word is said to be store by the numerical value . Though we dont match the same value , we tend to give them by vector space thing which trys to find the similarity thing and gives them as the answer.
+
