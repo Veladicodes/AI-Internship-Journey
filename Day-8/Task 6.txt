@@ -1,0 +1,19 @@
+1. Why can't an LLM alone answer company-specific questions?
+
+From what I learned, an LLM is trained on a large amount of public data, but it does not know a company's private documents, policies, or internal information. Because of this, it cannot answer company-specific questions unless that information is provided. This is why companies use RAG, which allows the LLM to access their own documents before generating an answer.
+
+2. Why are embeddings important?
+
+I understood that embeddings are important because they convert text into numerical vectors that represent the meaning of the text. This allows the system to search based on meaning instead of exact keywords, making the retrieved information more relevant and accurate.
+
+3. What role does the vector database play?
+
+From my research, I learned that the vector database stores all the document embeddings and helps retrieve the most relevant information using similarity search. Without a vector database, searching through thousands of documents would be much slower and less efficient.
+
+4. Where do you think RAG is used in real-world products?
+
+In my opinion, RAG is used in many real-world applications such as customer support chatbots, HR assistants, healthcare systems, legal research, banking, e-commerce, and company knowledge bases. It is especially useful wherever AI needs to answer questions using updated or organization-specific information.
+
+5. Which RAG component do you find most interesting, and why?
+
+The RAG component I find most interesting is the Vector Database. I find it interesting because it can quickly search through a large amount of data and retrieve the most relevant information based on meaning rather than exact words. I think this is one of the main reasons why RAG systems can provide more accurate and reliable answers compared to using an LLM alone.
