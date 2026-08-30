@@ -1,0 +1,80 @@
+Task 4: Research on Popular RAG Tools
+
+1. LangChain
+
+What is it?
+
+From my research, I learned that LangChain is a framework used to build AI applications using Large Language Models (LLMs). It helps developers connect LLMs with documents, APIs, databases, vector databases, and other external tools.
+
+Why is it used?
+
+It is mainly used to build complete AI workflows such as RAG applications, AI chatbots, and AI agents. It makes it easier to connect different components required in an AI application.
+
+One Advantage
+
+I think the biggest advantage of LangChain is that it supports many integrations, so developers can build AI applications more easily without creating everything from scratch.
+
+
+2. LlamaIndex
+
+What is it?
+
+From my research, I understood that LlamaIndex is a framework designed to connect LLMs with private or custom data such as PDFs, company documents, databases, and websites.
+
+Why is it used?
+
+It is mainly used in RAG applications to organize, index, and retrieve information from documents efficiently before sending it to the LLM.
+
+One Advantage
+
+One advantage I found is that it makes document retrieval faster and more accurate by creating efficient indexes.
+
+
+3. ChromaDB
+
+What is it?
+
+From my research, I learned that ChromaDB is an open-source vector database that stores document embeddings.
+
+Why is it used?
+
+It is used to store embeddings and perform semantic searches by finding documents based on their meaning rather than exact keywords.
+
+One Advantage
+
+I think its biggest advantage is that it is free, open-source, lightweight, and very easy to set up, especially for beginners.
+
+
+4. FAISS
+
+What is it?
+
+FAISS stands for Facebook AI Similarity Search. It is an open-source library developed to perform fast similarity searches on large collections of vectors.
+
+Why is it used?
+
+It is mainly used to search through millions of embeddings and quickly retrieve the most relevant information.
+
+One Advantage
+
+The biggest advantage of FAISS is its high search speed, especially when working with very large datasets.
+
+
+5. Pinecone
+
+What is it?
+
+From what I understood, Pinecone is a cloud-based vector database designed for production-level AI applications.
+
+Why is it used?
+
+It is used to store embeddings and perform fast similarity searches without the developer having to manage the infrastructure.
+
+One Advantage
+
+I think its biggest advantage is that it is fully managed, highly scalable, and suitable for enterprise-level AI applications.
+
+
+My Understanding
+
+After learning about these tools, I understood that each tool has a different role in a RAG system. LangChain helps in building the overall AI workflow, LlamaIndex helps connect AI with custom documents, and ChromaDB, FAISS, and Pinecone are mainly used to store embeddings and perform similarity searches. In my opinion, all these tools work together to build AI applications that can provide accurate and context-aware answers using external knowledge instead of depending only on the LLM's trained knowledge.
